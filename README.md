@@ -1,0 +1,1 @@
+My road how to Django things :)
