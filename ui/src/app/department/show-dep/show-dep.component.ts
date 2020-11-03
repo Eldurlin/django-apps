@@ -56,5 +56,4 @@ export class ShowDepComponent implements OnInit {
       data => {this.department_list = data}
     );
   }
-
 }
