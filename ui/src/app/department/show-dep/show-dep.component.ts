@@ -19,6 +19,10 @@ export class ShowDepComponent implements OnInit {
 
   department:any;
 
+  department_id_filter:string="";
+  department_name_filter:string="";
+  department_list_without_filter:any=[];
+
   ngOnInit(): void {
     this.refresh_department_list();
   }
@@ -52,8 +56,30 @@ export class ShowDepComponent implements OnInit {
   }
 
   refresh_department_list() {
-    this.service.get_department_list().subscribe(
-      data => {this.department_list = data}
+    this.service.get_department_list().subscribe(data => {
+        this.department_list = data;
+        this.department_list_without_filter = data;
+      }
     );
+  }
+
+  filter_function() {
+    var department_id_filter = this.department_id_filter;
+    var department_name_filter = this.department_name_filter;
+
+    this.department_list = this.department_list_without_filter.filter(function (el) {
+      return el.DepartmentID.toString().toLowerCase().includes(department_id_filter.toString().trim().toLowerCase())&&
+        el.DepartmentName.toString().toLowerCase().includes(department_name_filter.toString().trim().toLowerCase())
+    });
+  }
+
+  sort_result(property, ascending) {
+    this.department_list = this.department_list_without_filter.sort(function (a, b) {
+      if(ascending) {
+        return (a[property] > b[property])?1 : ((a[property] < b[property]) ?-1 : 0);
+      } else {
+        return (b[property] > a[property])?1 : ((b[property] < a[property]) ?-1 : 0);
+      }
+    })
   }
 }
