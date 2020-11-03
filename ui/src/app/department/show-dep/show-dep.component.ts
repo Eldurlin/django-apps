@@ -32,6 +32,12 @@ export class ShowDepComponent implements OnInit {
     this.activate_add_edit_department_component = true;
   }
 
+  editClick(item) {
+    this.department = item;
+    this.modal_title = "Edit Department";
+    this.activate_add_edit_department_component = true;
+  }
+
   closeClick() {
     this.activate_add_edit_department_component = false;
     this.refresh_department_list();
