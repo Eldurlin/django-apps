@@ -38,6 +38,14 @@ export class ShowDepComponent implements OnInit {
     this.activate_add_edit_department_component = true;
   }
 
+  deleteClick(item) {
+    if(confirm('Are you sure?')) {
+      this.service.delete_department(item.DepartmentID).subscribe(data => {alert(data.toString());
+        this.refresh_department_list();
+      })
+    }
+  }
+
   closeClick() {
     this.activate_add_edit_department_component = false;
     this.refresh_department_list();
