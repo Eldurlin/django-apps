@@ -13,7 +13,27 @@ export class ShowDepComponent implements OnInit {
 
   department_list:any = [];
 
+  modal_title:string;
+
+  activate_add_edit_department_component:boolean = false;
+
+  department:any;
+
   ngOnInit(): void {
+    this.refresh_department_list();
+  }
+
+  addClick() {
+    this.department = {
+      DepartmentID: 0,
+      DepartmentName: "",
+    }
+    this.modal_title = "Add Department";
+    this.activate_add_edit_department_component = true;
+  }
+
+  closeClick() {
+    this.activate_add_edit_department_component = false;
     this.refresh_department_list();
   }
 
