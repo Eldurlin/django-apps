@@ -44,7 +44,7 @@ export class SharedService {
   }
 
   upload_photo(value:any) {
-    return this.http.post(this.api_url + '/save_file', value);
+    return this.http.post(this.api_url + '/save_file/', value);
   }
 
   get_all_departments_names():Observable<any[]> {

@@ -31,5 +31,4 @@ export class AddEditDepComponent implements OnInit {
     this.service.update_department(value).subscribe(res => {alert(res.toString());
     });
   }
-
 }
